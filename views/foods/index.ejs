@@ -6,7 +6,24 @@
     <title>My Pantry</title>
   </head>
   <body>
-    <%- include('./partials/_navbar.ejs') %>
+    <%- include('../partials/_navbar.ejs') %>
     <h1>Welcome to my Pantry</h1>
+    <a href="/users/<%= user._id %>/foods/new">Add food</a>
+    <ul>
+      <% foods.forEach(food => { %> <!-- Use foods instead of pantry -->
+        <li>
+          <a href="/users/<%= user._id %>/foods/<%= food._id %>">
+            Food: <%= food.name %> | Quantity: <%= food.quantity %> | Category: <%= food.category %>
+          </a>
+          <form action="/users/<%= user._id %>/foods/<%= food._id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+          <a href="/users/<%= user._id %>/foods/<%= food._id %>/edit" class="edit-button" style="display: inline;">
+            <button type="button">Edit</button>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+
   </body>
 </html>

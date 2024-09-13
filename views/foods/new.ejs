@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Food</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-    <%- include('./partials/_navbar.ejs') %>
+    <%- include('../partials/_navbar.ejs') %>
     <h1>Add Food</h1>
     <form action="/users/<%=user._id%>/foods" method="POST">
-        <label for="Food">Food:</label>
+        <label for="food">Food:</label>
         <input type="text" name="name" id="name">
         
         <label for="quantity">Quantity:</label>

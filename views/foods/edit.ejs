@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit <%= food.name %></h1>
+    <form action="/users/<%= user._id %>/foods/<%= food._id %>?_method=PUT" method="POST">
+        <label for="food">Food:</label>
+        <input type="text" name="name" id="name" value="<%= food.name %>">
+        
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" value="<%= food.quantity %>">
+
+        <label for="food category">Food Category:</label>
+        <select name="category" id="category">
+            <option value="Fruit" <%= food.category === 'Fruit' ? 'selected' : '' %>>Fruit</option>
+            <option value="Vegetable" <%= food.category === 'Vegetable' ? 'selected' : '' %>>Vegetble</option>
+            <option value="Meat" <%= food.category === 'Meat' ? 'selected' : '' %>>Meat</option>
+            <option value="Dairy" <%= food.category === 'Dairy' ? 'selected' : '' %>>Dairy</option>
+            <option value="Snack" <%= food.category === 'Snack' ? 'selected' : '' %>>Snack</option>
+            <option value="Grain" <%= food.category === 'Grain' ? 'selected' : '' %>>Grain</option>
+            <option value="Pasta" <%= food.category === 'Pasta' ? 'selected' : '' %>>Pasta</option>
+            <option value="Herbs & Spices" <%= food.category === 'Herbs & Spices' ? 'selected' : '' %>>Herbs & Spices</option>
+            <option value="Canned Goods" <%= food.category === 'Canned Goods' ? 'selected' : '' %>>Canned Gooods</option>
+            <option value="Cooking Essentials" <%= food.category === 'Cooking Essentials' ? 'selected' : '' %>>Cooking Essentials</option>
+            <option value="Baking" <%= food.category === 'Baking' ? 'selected' : '' %>>Baking</option>
+            <option value="Other" <%= food.category === 'Other' ? 'selected' : '' %>>Other</option>
+        </select>
+        <button type="submit">Edit Food</button>
+    </form>
+</body>
+</html>
