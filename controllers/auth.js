@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-const User = require('../models/user.js');
+const User = require('../models/user');
 
 router.get('/sign-up', (req, res) => {
   res.render('auth/sign-up.ejs');
@@ -18,6 +18,7 @@ router.get('/sign-out', (req, res) => {
 });
 
 router.post('/sign-up', async (req, res) => {
+  console.log(req.body)
   try {
     // Check if the username is already taken
     const userInDatabase = await User.findOne({ username: req.body.username });
@@ -46,6 +47,7 @@ router.post('/sign-up', async (req, res) => {
 });
 
 router.post('/sign-in', async (req, res) => {
+  console.log(req.body)
   try {
     // First, get the user from the database
     const userInDatabase = await User.findOne({ username: req.body.username });

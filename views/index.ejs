@@ -6,7 +6,9 @@
   <title>Home Page</title>
 </head>
 <body>
-  <% if (user) { %>
+  <%- include('./partials/_navbar.ejs') %>
+  <h1>Welcome to CookBook</h1>
+  <!-- <% if (user) { %>
     <h1>Welcome to the app, <%= user.username %>!</h1>
     <p>
       <a href="/auth/sign-out">Sign out</a>
@@ -18,6 +20,6 @@
       <a href="/auth/sign-in">Sign in</a>.
     </p>
   <% } %>
-  <p><a href="/vip-lounge">Get into the VIP Users Only lounge!</a></p>
+  <p><a href="/vip-lounge">Get into the VIP Users Only lounge!</a></p> -->
 </body>
 </html>

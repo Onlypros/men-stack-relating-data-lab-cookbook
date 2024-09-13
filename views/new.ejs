@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Food</title>
+</head>
+<body>
+    <%- include('./partials/_navbar.ejs') %>
+    <h1>Add Food</h1>
+    <form action="/users/<%=user._id%>/foods" method="POST">
+        <label for="Food">Food:</label>
+        <input type="text" name="name" id="name">
+        
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity">
+
+        <label for="food category">Food Category:</label>
+        <select name="category" id="category">
+            <option value="Fruit">Fruit</option>
+            <option value="Vegetable">Vegetble</option>
+            <option value="Meat">Meat</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Snack">Snack</option>
+            <option value="Grain">Grain</option>
+            <option value="Pasta">Pasta</option>
+            <option value="Herbs & Spices">Herbs & Spices</option>
+            <option value="Canned Goods">Canned Gooods</option>
+            <option value="Cooking Essentials">Cooking Essentials</option>
+            <option value="Baking">Baking</option>
+            <option value="Other">Other</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
