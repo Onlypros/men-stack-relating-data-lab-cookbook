@@ -7,7 +7,7 @@
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Welcome to my Pantry</h1>
+    <h1><%= user.username %>'s Pantry</h1>
     <a href="/users/<%= user._id %>/foods/new">Add food</a>
     <ul>
       <% foods.forEach(food => { %> <!-- Use foods instead of pantry -->

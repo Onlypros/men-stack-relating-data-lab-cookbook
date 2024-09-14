@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-
 // user.js
-
 const foodSchema = new mongoose.Schema({
   // YOU DO: Define properties of food schema
   name: {
@@ -17,7 +15,11 @@ const foodSchema = new mongoose.Schema({
     type: String,
     enum: ['Fruit', 'Vegetable', 'Meat', 'Dairy', 'Snack', 'Grain', 'Pasta', 'Herbs & Spices', 'Canned Goods', 'Cooking Essentials', 'Baking', 'Other'],
     required: true
-  }
+  },
+  // reviews: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   required: true,
+  // }
 });
 
 const userSchema = mongoose.Schema({
@@ -35,3 +37,5 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
+

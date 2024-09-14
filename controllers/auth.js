@@ -1,22 +1,24 @@
+// packages
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
+// model from my database
 const User = require('../models/user');
 
 router.get('/sign-up', (req, res) => {
   res.render('auth/sign-up.ejs');
-});
+});  // renders sign up page
 
 router.get('/sign-in', (req, res) => {
   res.render('auth/sign-in.ejs');
-});
+});  // renders sing in page
 
 router.get('/sign-out', (req, res) => {
   req.session.destroy();
   res.redirect('/');
-});
+}); // logs the user out and removes them from the session
 
+// this handles the action of signing up a user and adding to the database
 router.post('/sign-up', async (req, res) => {
   console.log(req.body)
   try {
@@ -25,17 +27,14 @@ router.post('/sign-up', async (req, res) => {
     if (userInDatabase) {
       return res.send('Username already taken.');
     }
-  
     // Username is not taken already!
     // Check if the password and confirm password match
     if (req.body.password !== req.body.confirmPassword) {
       return res.send('Password and Confirm Password must match');
     }
-  
     // Must hash the password before sending to the database
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword;
-  
     // All ready to create the new user!
     await User.create(req.body);
   
@@ -46,6 +45,7 @@ router.post('/sign-up', async (req, res) => {
   }
 });
 
+// handles the sign in process 
 router.post('/sign-in', async (req, res) => {
   console.log(req.body)
   try {
@@ -54,7 +54,6 @@ router.post('/sign-in', async (req, res) => {
     if (!userInDatabase) {
       return res.send('Login failed. Please try again.');
     }
-  
     // There is a user! Time to test their password with bcrypt
     const validPassword = bcrypt.compareSync(
       req.body.password,
@@ -63,7 +62,6 @@ router.post('/sign-in', async (req, res) => {
     if (!validPassword) {
       return res.send('Login failed. Please try again.');
     }
-  
     // There is a user AND they had the correct password. Time to make a session!
     // Avoid storing the password, even in hashed format, in the session
     // If there is other data you want to save to `req.session.user`, do so here!
